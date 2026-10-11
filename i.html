@@ -1,0 +1,24 @@
+<script>
+  async function layNoiDungMoiNhat(url) {
+    try {
+      // Cách gộp: Dùng ?t=Date.now() để chống cache CDN và { cache: 'no-store' } để chống cache trình duyệt
+      const response = await fetch(url + '?t=' + Date.now(), { cache: 'no-store' });
+      
+      if (!response.ok) {
+        throw new Error('Lỗi HTTP: ' + response.status);
+      }
+      
+      const noiDung = await response.text();
+      
+      // Hiển thị nội dung mới nhất lên alert
+      alert(noiDung);
+      
+    } catch (error) {
+      console.error('Đã xảy ra lỗi:', error);
+      alert('Không thể tải dữ liệu mới.');
+    }
+  }
+
+  // Gọi hàm với đường dẫn file hoặc API của bạn (thay 'https://abc.xyz/api/data.json' bằng link thực tế)
+  layNoiDungMoiNhat('/a.txt');
+</script>
